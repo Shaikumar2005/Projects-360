@@ -1,0 +1,209 @@
+/* NAVBAR */
+
+.navbar{
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 92%;
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+
+     background: #ffffff;
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+
+    z-index: 1000;
+}
+
+/* LOGO */
+
+.nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo img{
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* COMPANY NAME */
+
+.company-name{
+    display: flex;
+    flex-direction: column;
+}
+
+.company-name h2{
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    color: #111111;
+
+    letter-spacing: 1px;
+}
+
+.company-name span{
+    font-size: 11px;
+
+    color: white;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+/* MENU */
+
+.navbar ul{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li{
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+
+    color: #222222;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    transition: all .3s ease;
+}
+
+.navbar ul li a:hover{
+    color: #00D26A;
+}
+
+/* UNDERLINE EFFECT */
+
+.navbar ul li a::after{
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #00D26A;
+
+    border-radius: 50px;
+
+    transition: .3s ease;
+}
+
+.navbar ul li a:hover::after{
+    width: 100%;
+}
+
+/* BUTTON */
+
+.quote-btn{
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #00D26A,
+        #00B85C
+    );
+
+    color: white;
+
+    padding: 12px 28px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    transition: .3s ease;
+}
+
+.quote-btn:hover{
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0,210,106,0.35);
+}
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+    .navbar{
+        width: 95%;
+        padding: 0 20px;
+    }
+
+    .navbar ul{
+        gap: 20px;
+    }
+
+    .company-name h2{
+        font-size: 18px;
+    }
+
+    .company-name span{
+        display: none;
+    }
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        height: 70px;
+    }
+
+    .navbar ul{
+        display: none;
+        color: white;
+    }
+
+    .quote-btn{
+        display: none;
+    }
+
+    .nav-logo img{
+        height: 45px;
+    }
+
+    .company-name h2{
+        font-size: 16px;
+    }
+}
