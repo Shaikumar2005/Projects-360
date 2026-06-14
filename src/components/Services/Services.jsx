@@ -28,12 +28,6 @@ function Services() {
       price: "Starts at ₹99"
     },
     {
-      image: uiux,
-      title: "UI/UX Design",
-      desc: "Modern user interface and user experience design solutions.",
-      price: "Starts at ₹299"
-    },
-    {
       image: patent,
       title: "Patent Support",
       desc: "Guidance and assistance for patent filing and innovation protection.",
