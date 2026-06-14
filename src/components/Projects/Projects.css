@@ -90,11 +90,22 @@
 
 @media(max-width:768px){
 
-    .projects-grid{
-        grid-template-columns:1fr;
-    }
+  .projects{
+    padding:80px 20px;
+    overflow:hidden;
+  }
 
-    .projects-header h2{
-        font-size:2.2rem;
-    }
+  .projects-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .project-card{
+    width:100%;
+    height:380px;
+  }
+
+  .projects-header h2{
+    font-size:2rem;
+  }
 }
