@@ -3,7 +3,6 @@ import "./Services.css";
 import consultancy from "../../assets/consultancy.jpg";
 import project from "../../assets/project.jpg";
 import internship from "../../assets/internship.jpg";
-import uiux from "../../assets/uiux.jpg";
 import patent from "../../assets/patent.jpg";
 import research from "../../assets/research.jpg";
 

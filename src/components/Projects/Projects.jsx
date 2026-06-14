@@ -1,6 +1,6 @@
 import "./Projects.css";
 
-import ecommerce from "../../assets/E-Commerce.jpg";
+import ecommerce from "../../assets/E-commerce.jpg";
 import banking from "../../assets/banking.jpg";
 
 function Projects() {
