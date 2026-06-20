@@ -48,7 +48,7 @@ function Footer() {
             
 
             <a
-              href="mailto:projectsthreesixty.com@gmail.com"
+              href="mailto:admin@projects360.in"
             >
               <FaEnvelope />
             </a>
