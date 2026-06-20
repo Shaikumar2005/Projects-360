@@ -91,7 +91,7 @@ function Footer() {
 
           <p>
             <FaEnvelope className="footer-icon" />
-            projectsthreesixty.com@gmail.com
+             admin@projects360.in
           </p>
 
         </div>
