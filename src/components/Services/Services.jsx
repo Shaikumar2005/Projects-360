@@ -11,68 +11,92 @@ function Services() {
   const services = [
     {
       image: consultancy,
-      title: "Consultancy",
-      desc: "Professional consulting services to guide businesses towards growth and success.",
-      price: "Contact for Quote"
+      number: "01",
+      title: "Business Consultancy",
+      desc: "Helping businesses grow through strategic planning, technical consulting and innovative solutions.",
+      price: "Contact Us"
     },
     {
       image: project,
+      number: "02",
       title: "Project Development",
-      desc: "End-to-end project planning, execution and management solutions.",
-      price: "Starts at ₹1,500"
+      desc: "From concept to deployment, we build high-quality academic and industrial projects.",
+      price: "Starting ₹1,500"
     },
     {
       image: internship,
+      number: "03",
       title: "Internship Programs",
-      desc: "Industry-oriented internship opportunities with practical exposure.",
-      price: "Starts at ₹99"
+      desc: "Industry-oriented internship programs with mentorship, certification and live projects.",
+      price: "Starting ₹99"
     },
     {
       image: patent,
-      title: "Patent Support",
-      desc: "Guidance and assistance for patent filing and innovation protection.",
-      price: "Contact for Quote"
+      number: "04",
+      title: "Patent Assistance",
+      desc: "Complete guidance for patent filing, documentation and intellectual property protection.",
+      price: "Contact Us"
     },
     {
       image: research,
+      number: "05",
       title: "Research & Development",
-      desc: "Advanced research solutions to support innovation and technological growth.",
-        price: "Starts at ₹799"
+      desc: "Innovative R&D solutions for students, startups and organizations.",
+      price: "Starting ₹799"
     }
   ];
 
   return (
     <section className="services" id="services">
 
-      <div className="section-header">
+      <div className="services-heading">
+
         <span>OUR SERVICES</span>
-        <h2>
-          Solutions Designed For Success
-        </h2>
+
+        <h2>What We Offer</h2>
+
+        <p>
+          We provide industry-focused services that empower students,
+          startups and businesses to achieve their goals.
+        </p>
+
       </div>
 
-      <div className="services-grid">
+      <div className="service-list">
 
         {services.map((service, index) => (
-          <div className="service-card" key={index}>
 
-            <div className="service-image">
-              <img src={service.image} alt={service.title} />
+          <div className="service-box" key={index}>
+
+            <div className="service-left">
+
+              <img
+                src={service.image}
+                alt={service.title}
+              />
+
             </div>
 
-            <div className="service-content">
+            <div className="service-right">
+
+              <h1>{service.number}</h1>
 
               <h3>{service.title}</h3>
 
               <p>{service.desc}</p>
 
-              <div className="service-price">
-                {service.price}
+              <div className="bottom">
+
+                <span>{service.price}</span>
+
+                <button>Explore</button>
+
               </div>
 
             </div>
 
           </div>
+
         ))}
 
       </div>
