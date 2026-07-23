@@ -21,6 +21,10 @@ function Navbar() {
       Contact Us
   </a>
 
+  <a href="#register" className="register-btn">
+  Register Workshop
+</a>
+
 </nav>
   );
 }

@@ -215,3 +215,17 @@
         display:none;
     }
 }
+
+
+.register-btn {
+  background: #00b85c;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-btn:hover {
+  background: #00994c;
+}
