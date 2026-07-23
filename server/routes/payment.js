@@ -5,7 +5,7 @@ const router = express.Router();
 const {
     createOrder,
     verifyPayment
-} = require("../controllers/PaymentController");
+} = require("../controllers/paymentController");
 
 router.post("/create-order", createOrder);
 
