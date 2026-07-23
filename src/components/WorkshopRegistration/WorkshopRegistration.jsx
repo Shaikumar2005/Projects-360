@@ -5,8 +5,7 @@ import "./WorkshopRegistration.css";
 
 // Single source of truth for the backend URL — used by both calls below.
 // Move this to a .env value later if you deploy (e.g. VITE_API_URL).
-const API_BASE_URL = "http://localhost:5000";
-
+const API_BASE_URL = "https://projects360-backend.onrender.com";
 // ₹19 workshop pass → amount must be in paise
 const WORKSHOP_AMOUNT_PAISE = 1900;
 
