@@ -1,6 +1,14 @@
-import  { useState } from 'react';
-import emailjs from '@emailjs/browser';
-import './WorkshopRegistration.css';
+import { useState } from "react";
+import axios from "axios";
+import emailjs from "@emailjs/browser";
+import "./WorkshopRegistration.css";
+
+// Single source of truth for the backend URL — used by both calls below.
+// Move this to a .env value later if you deploy (e.g. VITE_API_URL).
+const API_BASE_URL = "http://localhost:5000";
+
+// ₹19 workshop pass → amount must be in paise
+const WORKSHOP_AMOUNT_PAISE = 1900;
 
 const WorkshopRegistration = () => {
   const [formData, setFormData] = useState({
@@ -24,44 +32,151 @@ const WorkshopRegistration = () => {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     setLoading(true);
 
     try {
-      await emailjs.send(
-        'service_hu9oqch', // e.g. service_x7k2m9p
-        'template_okkyd76', // e.g. template_ab12cd3
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          college: formData.college,
-          department: formData.department,
-          year: formData.year,
-          workshop: formData.workshop,
-        },
-        'zzWH1cvYsM9xlK4f0' // e.g. aBcD1234EfGh5678
-      );
 
-      setSubmitted(true);
+        // Create Order — body was missing before, and the response was never captured
+        const orderResponse = await axios.post(
+          `${API_BASE_URL}/api/create-order`,
+          { amount: WORKSHOP_AMOUNT_PAISE }
+        );
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        college: '',
-        department: '',
-        year: '',
-        workshop: 'AI & Digital Marketing Workshop',
-      });
-    } catch (error) {
-      console.error('Email sending failed:', error);
-      alert('Registration failed. Please try again.');
+        const order = orderResponse.data;
+
+        const options = {
+
+            key: order.key,
+
+            amount: order.amount,
+
+            currency: order.currency,
+
+            name: "Projects360",
+
+            description: "AI & Digital Marketing Workshop",
+
+            order_id: order.order_id,
+
+            prefill: {
+                name: formData.name,
+                email: formData.email,
+                contact: formData.phone,
+            },
+
+            theme: {
+                color: "#2563eb",
+            },
+
+            handler: async function (response) {
+
+                try {
+
+                    // fixed: was a relative "/api/verify-payment" which hits the
+                    // frontend dev server instead of the backend on port 5000
+                    const verify = await axios.post(
+                      `${API_BASE_URL}/api/verify-payment`,
+                      {
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_signature: response.razorpay_signature,
+                      }
+                    );
+
+                    if (verify.data.success) {
+
+                        await emailjs.send(
+
+                            "service_hu9oqch",
+
+                            "template_okkyd76",
+
+                            {
+                                name: formData.name,
+                                email: formData.email,
+                                phone: formData.phone,
+                                college: formData.college,
+                                department: formData.department,
+                                year: formData.year,
+                                workshop: formData.workshop,
+                            },
+
+                            "zzWH1cvYsM9xlK4f0"
+
+                        );
+
+                        setSubmitted(true);
+
+                        setFormData({
+
+                            name: "",
+                            email: "",
+                            phone: "",
+                            college: "",
+                            department: "",
+                            year: "",
+                            workshop:
+                                "AI & Digital Marketing Workshop",
+
+                        });
+
+                    } else {
+
+                        alert("Payment verification failed. Please contact support.");
+
+                    }
+
+                } catch (err) {
+
+                    alert("Payment verification failed.");
+
+                    console.log(err);
+
+                }
+
+            },
+
+            modal: {
+                ondismiss: function () {
+                    // user closed the checkout modal without paying
+                    setLoading(false);
+                },
+            },
+
+        };
+
+        const razorpay = new window.Razorpay(options);
+
+        razorpay.on("payment.failed", function (response) {
+
+            alert(
+              `Payment Failed: ${response.error?.description || "Please try again."}`
+            );
+
+        });
+
+        razorpay.open();
+
     }
 
-    setLoading(false);
-  };
+    catch (err) {
+
+        console.log(err);
+
+        alert("Unable to start payment.");
+
+    }
+
+    finally {
+
+        setLoading(false);
+
+    }
+
+};
 
   return (
     <section className="workshop-section" id="register">
@@ -206,6 +321,7 @@ const WorkshopRegistration = () => {
                     <option value="2nd Year">2nd Year</option>
                     <option value="3rd Year">3rd Year</option>
                     <option value="4th Year">4th Year</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
