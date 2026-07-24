@@ -183,7 +183,7 @@ const WorkshopRegistration = () => {
 
         {/* LEFT SIDE */}
         <div className="workshop-left">
-          <h1>AI & Digital Marketing Workshop 2026</h1>
+          <h1>Gen AI & Digital Marketing Workshop</h1>
 
           <p className="subtitle">
             Learn AI tools, content creation, branding, lead generation,
